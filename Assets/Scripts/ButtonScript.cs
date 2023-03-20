@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ButtonScript : MonoBehaviour
 {
-    float speed = 50f;
+    float speed = 100f;
+    float despawnXPos = 194f;
     public int letter;
     public bool isActive = false;
-    private Vector3 ASpawn = new Vector3(483, 430, 0);
-    private Vector3 SSpawn = new Vector3(482, 415, 0);
-    private Vector3 DSpawn = new Vector3(482, 402, 0);
+    private Vector3 ASpawn = new Vector3(483, 423, 0);
+    private Vector3 SSpawn = new Vector3(482, 408, 0);
+    private Vector3 DSpawn = new Vector3(482, 392, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,7 @@ public class ButtonScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
-        if(transform.position.x < 175)
+        if(transform.position.x < despawnXPos)
         {
             FindObjectOfType<RythmGameManager>().minusPoints();
             Destroy(gameObject);
