@@ -56,25 +56,30 @@ public class RythmGameManager : MonoBehaviour
         StartCoroutine(spawn());
     }
 
+    //We could create whole course of button presses in here
     IEnumerator spawn()
     {
         if (!alreadySpawning)
         {
             alreadySpawning = true;
             yield return new WaitForSecondsRealtime(Random.Range(spawnRangeMin, spawnRangeMax));
-            GameObject temp = Instantiate(buttonPrefab);
-            temp.transform.SetParent(canvas.transform);
+            SpawnAButton(Ja, Random.Range(0,3));
             yield return new WaitForSecondsRealtime(Random.Range(spawnRangeMin, spawnRangeMax));
-            temp = Instantiate(buttonPrefab);
-            temp.transform.SetParent(canvas.transform);
+            SpawnAButton(Je, Random.Range(0, 3));
             yield return new WaitForSecondsRealtime(Random.Range(spawnRangeMin, spawnRangeMax));
-            temp = Instantiate(buttonPrefab);
-            temp.transform.SetParent(canvas.transform);
-            //intervalSpawn -= .05f;
+            SpawnAButton(Ja, Random.Range(0, 3));
+            intervalSpawn -= .05f;
             alreadySpawning = false;
         }
 
 
+    }
+
+    public void SpawnAButton(AudioClip clip, int letter)
+    {
+        GameObject temp = Instantiate(buttonPrefab);
+        temp.transform.SetParent(canvas.transform);
+        temp.GetComponent<ButtonScript>().SetUp(letter, clip);
     }
 
     public void addObject(GameObject button)
@@ -95,31 +100,18 @@ public class RythmGameManager : MonoBehaviour
         {
             
             smallScore++;
-            if(soundTick== 0 || soundTick == 2)
-            {
-                source.PlayOneShot(Ja);
-               
-            }
-            else
-            {
-                source.PlayOneShot(Je);
-            }
-            if (smallScore >= 3 && soundTick >=2)
+            source.PlayOneShot(buttonsInScene[0].sound);
+            
+            if (smallScore >= 3)
             {
                 score++;
                 updateScore();
                 smallScore = 0;
             }
-            if (soundTick == 2)
-            {
-                smallScore = 0;
-            }
+
             removeObject(buttonsInScene[0].gameObject);
-            soundTick++;
-            if (soundTick >= 3)
-            {
-                soundTick = 0;
-            }
+            
+            
         }
         else
         {

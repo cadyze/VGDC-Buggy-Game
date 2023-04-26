@@ -6,16 +6,31 @@ public class ButtonScript : MonoBehaviour
 {
     float speed = 100f;
     float despawnXPos = 194f;
-    public int letter;
+    public int letter;       // 0: A , 1: S, 2: d
     public bool isActive = false;
     private Vector3 ASpawn = new Vector3(483, 423, 0);
     private Vector3 SSpawn = new Vector3(482, 408, 0);
     private Vector3 DSpawn = new Vector3(482, 392, 0);
-    // Start is called before the first frame update
+
+    public AudioClip sound;
+    //Okay so this is backwards but I already made this class and i dont want
+    //to change it to a scriptable object so im just gonna write
+    //an SetUp method
+
+    //MUST CALL THIS METHOD WHEN CREATING A NEW BUTTON
+    public void SetUp(int letter, AudioClip sound) {
+
+        this.letter = letter;
+        this.sound = sound;
+    }
+
+
+
+
     void Start()
     {
         FindObjectOfType<RythmGameManager>().addObject(gameObject);
-        letter = Random.Range(0, 3);
+        //letter = Random.Range(0, 3);
         if(letter == 0)
         {
             transform.position = ASpawn;
