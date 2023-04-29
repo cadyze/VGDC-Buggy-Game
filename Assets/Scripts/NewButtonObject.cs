@@ -6,7 +6,7 @@ public class NewButtonObject : MonoBehaviour
 {
     public bool canBePressed;
     public KeyCode keyToPress;
-
+    bool canDestory = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,11 @@ public class NewButtonObject : MonoBehaviour
                 // ******** UPDATE SCORE HERE *********
                 GameManager.instance.NoteHit();
             }
+            else if (canDestory)
+            {
+                gameObject.SetActive(false);
+                GameManager.instance.NoteMissed();
+            }
         }
     }
 
@@ -33,6 +38,10 @@ public class NewButtonObject : MonoBehaviour
         if(collision.tag == "Activator")
         {
             canBePressed = true;
+        }
+        else if(collision.tag == "Destroyer")
+        {
+            canDestory = true;
         }
     }
 

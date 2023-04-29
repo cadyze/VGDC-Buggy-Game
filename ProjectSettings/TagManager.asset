@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collision Box
+  - Activator
+  - Destroyer
   layers:
   - Default
   - TransparentFX
