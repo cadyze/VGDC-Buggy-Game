@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
     public Text multiplier;
     public TMP_Text buttonText;
     public AudioClip miss;
-    
+
+    public HealthManager health;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
 
         score.text = "Score: " + curScore;
         multiplier.text = "Multiplier: " + currentMultiplier + "x";
+
+        health.TrackerUpdate();
     }
 
     public void NoteMissed()
@@ -71,5 +75,9 @@ public class GameManager : MonoBehaviour
         multiplierTracker = 0;
         currentMultiplier = 1;
         GetComponent<AudioSource>().PlayOneShot(miss);
+        if (health.HealthDamage()) //if true game ends
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
