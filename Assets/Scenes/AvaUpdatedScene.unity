@@ -3078,6 +3078,8 @@ MonoBehaviour:
   multiplierTracker: 0
   score: {fileID: 1791990394}
   multiplier: {fileID: 2046179001}
+  buttonText: {fileID: 1667825613}
+  miss: {fileID: 8300000, guid: 063df8e59649a4c1690fc647c91eff25, type: 3}
 --- !u!4 &1486052192
 Transform:
   m_ObjectHideFlags: 0
