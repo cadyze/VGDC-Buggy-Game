@@ -33,7 +33,7 @@ public class NewButtonScript : MonoBehaviour
                 beatGroups[beatGroupIndex].SetActive(true);
                 GameObject temp = Instantiate<GameObject>(beatGroups[beatGroupIndex]);
                 temp.transform.SetParent(GameObject.Find("NoteHolder").transform);
-                temp.transform.position = new Vector3(13, 0, 0);
+                temp.transform.position = new Vector3(11, 0, 0);
                 beatGroupIndex++;
                 timeCheck = 0;
             }
