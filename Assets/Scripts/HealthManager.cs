@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class HealthManager : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class HealthManager : MonoBehaviour
     //you can have a max of 10 nugs, and maybe the big bugs give you better health? but that's a later thing. 
     // Like every 10 hits gets you a bug
 
+    [SerializeField] private UnityEvent OnHealthLoss;
     public int health = 5;
     public int healthTracker;
     public int damageTracker;
-    public Text healthText;
+    [SerializeField] private TextMeshPro healthTxt;
 
     // Start is called before the first frame update
     void Start()
@@ -37,21 +39,34 @@ public class HealthManager : MonoBehaviour
         {
             healthTracker = 0;
             health++;
-            healthText.text = "Health: " + health;
         }
+        UpdateHealthUI();
+    }
+
+    public void IncreaseHealth()
+    {
+        health++;
+        UpdateHealthUI();
     }
 
     //if health is less than 1 returns true, else returns false
     public bool HealthDamage()
     {
+        UpdateHealthUI();
         damageTracker++;
         if (damageTracker >= 2)
         {
             damageTracker = 0;
             health--;
-            healthText.text = "Health: " + health;
+            OnHealthLoss.Invoke();
             if (health < 0) return true;
         }
+        UpdateHealthUI();
         return false;
+    }
+
+    private void UpdateHealthUI()
+    {
+        healthTxt.text = health.ToString();
     }
 }

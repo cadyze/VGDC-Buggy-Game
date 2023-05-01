@@ -187,17 +187,20 @@ MonoBehaviour:
     Artists: Amy Brewster, Jasmine Do
 
 
-    Programmers:
-    Ava Smith, Jacob Cadavez, Jay Yoo
+    Gameplay Programmers:
+    Ava Smith, Jay Yoo
+
+    Visual Programmer: Jacob Cadavez
 
 
-    Designers: Elijah Mireles , Jay Yoo
+    Designers: Elijah
+    Mireles , Jay Yoo
 
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ca61bc04e7069224f8fa502b823fe6bb, type: 2}
+  m_sharedMaterial: {fileID: 8195073418116546014, guid: ca61bc04e7069224f8fa502b823fe6bb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
