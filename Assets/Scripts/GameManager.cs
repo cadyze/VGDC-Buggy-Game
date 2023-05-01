@@ -60,14 +60,15 @@ public class GameManager : MonoBehaviour
     {
         if (canAddStreak)
         {
+            health.TrackerUpdate();
             StartCoroutine(NoteHitCoroutine());
             noteHitStreak++;
 
             //Spawn a bug on the conveyer belt every three hits
-            if (noteHitStreak % 4 == 0)
+            if (noteHitStreak % 1 == 0 && health.ShouldGiveHealth())
             {
                 //Spawn in a bug on the conveyer belt
-                if (noteHitStreak >= 10)
+                if (currentMultiplier >= 6)
                 {
                     //Spawn a red bug to show on fire if high enough combo
                     OnSpawnBug.Invoke(BUG_COLOR.RED);

@@ -34,13 +34,17 @@ public class HealthManager : MonoBehaviour
     public void TrackerUpdate()
     {
         healthTracker++;
+        UpdateHealthUI();
+    }
 
+    public bool ShouldGiveHealth()
+    {
         if (healthTracker >= 10 && health < 10)
         {
             healthTracker = 0;
-            health++;
+            return true;
         }
-        UpdateHealthUI();
+        return false;
     }
 
     public void IncreaseHealth()
